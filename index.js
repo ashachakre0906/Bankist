@@ -28,3 +28,12 @@ const account4 = {
 };
 const accounts = [account1, account2, account3, account4];
 
+//Display movements on the page
+
+const displayMovements = function (movements) {
+    movements.forEach(function (mov, i) {
+        
+    });
+        
+}  
+displayMovements(account1.movements);
