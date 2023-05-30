@@ -71,5 +71,10 @@ for (const mov of movements) {
         deposits.push(mov);
     }
 }
-console.log(deposits);
+//Filter method for the withdrawals 
 
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(deposits);
+console.log(withdrawals);
+
+//reduce method
