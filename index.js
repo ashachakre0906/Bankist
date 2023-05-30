@@ -8,7 +8,7 @@ const account1 = {
 };
 const account2 = {
   owner: "Jessica Davis",
-  movements: [5000 , 3400, -150, -790, -3210, -1000, 8500, -30],
+  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5, // %
   pin: 2222,
 };
@@ -27,13 +27,21 @@ const account4 = {
   pin: 4444,
 };
 const accounts = [account1, account2, account3, account4];
-
+const containerMovements = document.querySelector('.movements');
 //Display movements on the page
 
 const displayMovements = function (movements) {
-    movements.forEach(function (mov, i) {
-        
-    });
-        
-}  
+  movements.forEach(function (mov, i) {
+    console.log(mov, i);
+    const type = mov > 0 ? "deposit" : "withdrawal";
+    const html = `
+        <div class="movements__row">
+                <div class="movements__type movements__type--deposit">${type} ${i + 1}
+                </div>
+                <div class="movements__value">${mov}</div>
+        </div>
+        `;
+      containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 displayMovements(account1.movements);
