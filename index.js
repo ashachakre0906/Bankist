@@ -46,6 +46,30 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 //Computing usernames
-const user = 'Steven Thomas Williams'//stw
-const username = user.toLowerCase().split(" ");
-console.log(username);
+// const user = 'Steven Thomas Williams'//stw
+const creatingUserNames = (accs) => {
+    accs.forEach(function (acc) {
+        acc.username = acc.owner
+            .toLowerCase()
+            .split(" ")
+            .map((name) => name[0]).join("");
+    });
+};
+console.log(creatingUserNames(accounts));
+console.log(accounts);
+//Filter method used to filter the elements used to specify the certain conditions
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const deposits = movements.filter(function (mov, i) {
+//     return mov > 0;
+// })
+console.log(movements);
+// same use case using for of loop
+const deposits = [];
+for (const mov of movements) {
+    if (mov > 0) {
+        deposits.push(mov);
+    }
+}
+console.log(deposits);
+
