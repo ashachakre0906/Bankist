@@ -45,3 +45,7 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+//Computing usernames
+const user = 'Steven Thomas Williams'//stw
+const username = user.toLowerCase().split(" ");
+console.log(username);
