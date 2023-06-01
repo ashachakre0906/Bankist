@@ -78,3 +78,9 @@ console.log(deposits);
 console.log(withdrawals);
 
 //reduce method
+
+const balance = movements.reduce(function (accumulator, currentElement) {
+        console.log(`${accumulator}: ${currentElement}`);
+    return accumulator + currentElement;
+})
+console.log(balance);
