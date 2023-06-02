@@ -28,6 +28,7 @@ const account4 = {
 };
 const accounts = [account1, account2, account3, account4];
 const containerMovements = document.querySelector('.movements');
+const labelBalance = document.querySelector(".balance__value");
 //Display movements on the page
 
 const displayMovements = function (movements) {
@@ -81,12 +82,20 @@ console.log(withdrawals);
         console.log(`${accumulator}: ${currentElement}`);
     return accumulator + currentElement;
 }, 0) */
-console.log(balance);
+// console.log(balance);
 //reduce method with arrow function
-const balance = movements.reduce((accumulator, currentElement) => accumulator + currentElement, 0);
-console.log(`${accumulator}: ${currentElement}`);
+const balance = movements.reduce((accumulator, currentElement) => accumulator + currentElement, 0)
+console.log(balance);
 
 //using for loop
 let balance2 = 0;
 for (const mov of movements) balance2 += mov;
 console.log(balance2);
+
+//function to print balance
+
+const callDisplayBalance = function (movements) {
+    const balance = movements.reduce((acc, mov) => acc + mov, 0);
+    labelBalance.textContent = `${balance} EUR`;
+}
+callDisplayBalance(account1.movements);
