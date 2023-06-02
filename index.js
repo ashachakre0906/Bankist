@@ -111,3 +111,4 @@ const max = movements.reduce((acc, mov) => {
     }
 }, movements[0]);
 console.log(max);
+//Magic of chaining methods
