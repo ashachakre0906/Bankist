@@ -72,15 +72,21 @@ for (const mov of movements) {
     }
 }
 //Filter method for the withdrawals 
-
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(deposits);
 console.log(withdrawals);
 
-//reduce method
-
-const balance = movements.reduce(function (accumulator, currentElement) {
+//reduce method without arrow function
+/* const balance = movements.reduce(function (accumulator, currentElement) {
         console.log(`${accumulator}: ${currentElement}`);
     return accumulator + currentElement;
-})
+}, 0) */
 console.log(balance);
+//reduce method with arrow function
+const balance = movements.reduce((accumulator, currentElement) => accumulator + currentElement, 0);
+console.log(`${accumulator}: ${currentElement}`);
+
+//using for loop
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
