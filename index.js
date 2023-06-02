@@ -60,7 +60,6 @@ console.log(creatingUserNames(accounts));
 console.log(accounts);
 //Filter method used to filter the elements used to specify the certain conditions
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const deposits = movements.filter(function (mov, i) {
 //     return mov > 0;
 // })
@@ -93,9 +92,22 @@ for (const mov of movements) balance2 += mov;
 console.log(balance2);
 
 //function to print balance
+//purpose of the accumulator is to keep track of current sum.
 
 const callDisplayBalance = function (movements) {
     const balance = movements.reduce((acc, mov) => acc + mov, 0);
     labelBalance.textContent = `${balance} EUR`;
 }
 callDisplayBalance(account1.movements);
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];/////////////////////////////////////////////
+// Get the maximum value of the movements array
+//purpose of the accumulator is to keep track of current maximum value
+//mov is keepin g track of the current value.
+const max = movements.reduce((acc, mov) => {
+    if (acc > mov) {
+        return acc;
+    } else {
+        return mov;
+    }
+}, movements[0]);
+console.log(max);
