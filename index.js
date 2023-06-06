@@ -1,5 +1,6 @@
 "use strict";
 // Bankist APP
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];/////////////////////////////////////////////
 const account1 = {
   owner: "Jonas Schemadtmann",
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -63,7 +64,7 @@ console.log(accounts);
 // const deposits = movements.filter(function (mov, i) {
 //     return mov > 0;
 // })
-console.log(movements);
+// console.log(movements);
 // same use case using for of loop
 const deposits = [];
 for (const mov of movements) {
@@ -99,7 +100,6 @@ const callDisplayBalance = function (movements) {
     labelBalance.textContent = `${balance} EUR`;
 }
 callDisplayBalance(account1.movements);
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];/////////////////////////////////////////////
 // Get the maximum value of the movements array
 //purpose of the accumulator is to keep track of current maximum value
 //mov is keepin g track of the current value.
@@ -112,3 +112,6 @@ const max = movements.reduce((acc, mov) => {
 }, movements[0]);
 console.log(max);
 //Magic of chaining methods
+const euroToUsd = 1.1
+const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * euroToUsd).reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
