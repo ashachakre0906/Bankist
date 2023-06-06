@@ -126,5 +126,10 @@ const calcDisplaySummary = function (movements) {
 }
 calcDisplaySummary(account1.movements);
 
-
-// const outcome = 
+//Display the total outcome
+const outcome = function (movements) {
+    const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+    console.log(out);
+    labelSumOut.textContent = `${Math.abs(out)}€`
+}
+outcome(account1.movements);
