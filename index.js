@@ -33,6 +33,11 @@ const labelBalance = document.querySelector(".balance__value");
 const labelSumIn = document.querySelector(".summary__value--in");
 const labelSumOut = document.querySelector(".summary__value--out");
 const labelSumInterest = document.querySelector(".summary__value--interest");
+const loginButton = document.querySelector(".login__btn");
+const inputLoginUserName = document.querySelector(".login__input--user");
+const inputLoginPin = document.querySelector(".login__input--pin");
+const welcomeScreen = document.querySelector(".welcome");
+const mainApp = document.querySelector(".app");
 //Display movements on the page
 
 const displayMovements = function (movements) {
@@ -151,3 +156,22 @@ console.log(movements);
 console.log(firstWithdrawal);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
+
+//Implementing login feature adding event handler
+let currentAccount;
+loginButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    console.log("login"); 
+    currentAccount = accounts.find(acc => acc.username === inputLoginUserName.value);
+    console.log(currentAccount);
+    //check if the current account exists,if yes then user should be able to login
+    // console.log(inputLoginPin.value);
+    if (currentAccount?.pin === Number(inputLoginPin.value)) {
+        console.log(inputLoginPin.value);
+        console.log(`${currentAccount.owner} is logged in 👩‍💻`);
+    }
+    //Display UI and Welcome message
+    welcomeScreen.textContent = `Welcome ${currentAccount.owner}`;
+    //Change the opacity to 100
+    mainApp.style.opacity = '100%';
+})
