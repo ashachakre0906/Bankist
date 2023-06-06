@@ -120,24 +120,34 @@ const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * euroT
 console.log(totalDepositsUSD);
 
 const calcDisplaySummary = function (movements) {
-    const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
-    console.log(incomes);
-    labelSumIn.textContent = `${incomes}€`;
+  const incomes = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  console.log(incomes);
+  labelSumIn.textContent = `${incomes}€`;
 
-      const out = movements
-        .filter((mov) => mov < 0)
-        .reduce((acc, mov) => acc + mov, 0);
-      console.log(out);
-    labelSumOut.textContent = `${Math.abs(out)}€`;
-    
-    const interest = movements.filter(mov => mov > 0).map(deposit =>
-        (deposit * 1.2) / 100).filter((int, i, arr) => {
-            console.log(arr);
-            return int >= 1 //filtered out the interst greater than 1
-        }).reduce((acc, int) => acc + int, 0);
-    labelSumInterest.textContent = `${interest}€`
-   console.log(interest);
+  const out = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  console.log(out);
+  labelSumOut.textContent = `${Math.abs(out)}€`; //An Absolute Value basically just makes sure a number is positive.
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1; //filtered out the interst greater than 1
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+  console.log(interest);
 }
 calcDisplaySummary(account1.movements);
 
-
+//Find Method >>it wont return a new array , it basically returns the first element in an array based on the specified condition"
+//finding only one owner account
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
