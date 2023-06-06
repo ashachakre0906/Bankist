@@ -30,6 +30,9 @@ const account4 = {
 const accounts = [account1, account2, account3, account4];
 const containerMovements = document.querySelector('.movements');
 const labelBalance = document.querySelector(".balance__value");
+const labelSumIn = document.querySelector(".summary__value--in");
+const labelSumOut = document.querySelector(".summary__value--out");
+const labelSumInterest = document.querySelector(".summary__value--interest");
 //Display movements on the page
 
 const displayMovements = function (movements) {
@@ -115,3 +118,13 @@ console.log(max);
 const euroToUsd = 1.1
 const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * euroToUsd).reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
+
+const calcDisplaySummary = function (movements) {
+    const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+    console.log(incomes);
+    labelSumIn.textContent = `${incomes}€`;
+}
+calcDisplaySummary(account1.movements);
+
+
+// const outcome = 
