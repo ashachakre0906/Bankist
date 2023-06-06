@@ -16,7 +16,7 @@ const account2 = {
 
 const account3 = {
   owner: "Steven Thomas Williams",
-  movements: [200, -200, -340, -300, -20, -50, 400, -460],
+  movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7, // %
   pin: 3333,
 };
@@ -50,7 +50,7 @@ const displayMovements = function (movements) {
       i + 1
     }
                 </div>
-                <div class="movements__value">${mov}</div>
+                <div class="movements__value">${mov}€</div>
         </div>
         `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -111,12 +111,12 @@ console.log(balance2);
 
 const callDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
 callDisplayBalance(account1.movements);
 // Get the maximum value of the movements array
 //purpose of the accumulator is to keep track of current maximum value
-//mov is keepin g track of the current value.
+//mov is keeping the track of the current value.
 const max = movements.reduce((acc, mov) => {
   if (acc > mov) {
     return acc;
@@ -186,10 +186,15 @@ loginButton.addEventListener("click", function (event) {
     currentAccount.owner.split(" ")[0]
   }`;
   //Change the opacity to 100
-  mainApp.style.opacity = "100";
-  inputLoginUserName.value = "";
-    inputLoginPin.value = "";
+    mainApp.style.opacity = "100";
+    //Clear input fields
+    inputLoginUserName.value = inputLoginPin.value = "";
+    //inputlogin field should not loose its focus
+    inputLoginUserName.blur();
   //Display movements
+    displayMovements(currentAccount.movements);
   //Display Balance
+    callDisplayBalance(currentAccount.movements);
   //Display Summary
+    calcDisplaySummary(currentAccount.movements);
 });
