@@ -1,6 +1,6 @@
 "use strict";
 // Bankist APP
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];/////////////////////////////////////////////
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300]; /////////////////////////////////////////////
 const account1 = {
   owner: "Jonas Schemadtmann",
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -28,7 +28,7 @@ const account4 = {
   pin: 4444,
 };
 const accounts = [account1, account2, account3, account4];
-const containerMovements = document.querySelector('.movements');
+const containerMovements = document.querySelector(".movements");
 const labelBalance = document.querySelector(".balance__value");
 const labelSumIn = document.querySelector(".summary__value--in");
 const labelSumOut = document.querySelector(".summary__value--out");
@@ -46,24 +46,27 @@ const displayMovements = function (movements) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `
         <div class="movements__row">
-                <div class="movements__type movements__type--deposit">${type} ${i + 1}
+                <div class="movements__type movements__type--deposit">${type} ${
+      i + 1
+    }
                 </div>
                 <div class="movements__value">${mov}</div>
         </div>
         `;
-      containerMovements.insertAdjacentHTML('afterbegin', html);
+    containerMovements.insertAdjacentHTML("afterbegin", html);
   });
 };
 displayMovements(account1.movements);
 //Computing usernames
 // const user = 'Steven Thomas Williams'//stw
 const creatingUserNames = (accs) => {
-    accs.forEach(function (acc) {
-        acc.username = acc.owner
-            .toLowerCase()
-            .split(" ")
-            .map((name) => name[0]).join("");
-    });
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
 };
 console.log(creatingUserNames(accounts));
 console.log(accounts);
@@ -76,12 +79,12 @@ console.log(accounts);
 // same use case using for of loop
 const deposits = [];
 for (const mov of movements) {
-    if (mov > 0) {
-        deposits.push(mov);
-    }
+  if (mov > 0) {
+    deposits.push(mov);
+  }
 }
-//Filter method for the withdrawals 
-const withdrawals = movements.filter(mov => mov < 0);
+//Filter method for the withdrawals
+const withdrawals = movements.filter((mov) => mov < 0);
 console.log(deposits);
 console.log(withdrawals);
 
@@ -92,7 +95,10 @@ console.log(withdrawals);
 }, 0) */
 // console.log(balance);
 //reduce method with arrow function
-const balance = movements.reduce((accumulator, currentElement) => accumulator + currentElement, 0)
+const balance = movements.reduce(
+  (accumulator, currentElement) => accumulator + currentElement,
+  0
+);
 console.log(balance);
 
 //using for loop
@@ -104,24 +110,27 @@ console.log(balance2);
 //purpose of the accumulator is to keep track of current sum.
 
 const callDisplayBalance = function (movements) {
-    const balance = movements.reduce((acc, mov) => acc + mov, 0);
-    labelBalance.textContent = `${balance} EUR`;
-}
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
 callDisplayBalance(account1.movements);
 // Get the maximum value of the movements array
 //purpose of the accumulator is to keep track of current maximum value
 //mov is keepin g track of the current value.
 const max = movements.reduce((acc, mov) => {
-    if (acc > mov) {
-        return acc;
-    } else {
-        return mov;
-    }
+  if (acc > mov) {
+    return acc;
+  } else {
+    return mov;
+  }
 }, movements[0]);
 console.log(max);
 //Magic of chaining methods
-const euroToUsd = 1.1
-const totalDepositsUSD = movements.filter(mov => mov > 0).map(mov => mov * euroToUsd).reduce((acc, mov) => acc + mov, 0);
+const euroToUsd = 1.1;
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0)
+  .map((mov) => mov * euroToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
 
 const calcDisplaySummary = function (movements) {
@@ -146,32 +155,41 @@ const calcDisplaySummary = function (movements) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
   console.log(interest);
-}
+};
 calcDisplaySummary(account1.movements);
 
 //Find Method >>it wont return a new array , it basically returns the first element in an array based on the specified condition"
 //finding only one owner account
-const firstWithdrawal = movements.find(mov => mov < 0);
+const firstWithdrawal = movements.find((mov) => mov < 0);
 console.log(movements);
 console.log(firstWithdrawal);
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+const account = accounts.find((acc) => acc.owner === "Jessica Davis");
 console.log(account);
 
 //Implementing login feature adding event handler
 let currentAccount;
-loginButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    console.log("login"); 
-    currentAccount = accounts.find(acc => acc.username === inputLoginUserName.value);
-    console.log(currentAccount);
-    //check if the current account exists,if yes then user should be able to login
-    // console.log(inputLoginPin.value);
-    if (currentAccount?.pin === Number(inputLoginPin.value)) {
-        console.log(inputLoginPin.value);
-        console.log(`${currentAccount.owner} is logged in 👩‍💻`);
-    }
-    //Display UI and Welcome message
-    welcomeScreen.textContent = `Welcome ${currentAccount.owner}`;
-    //Change the opacity to 100
-    mainApp.style.opacity = '100%';
-})
+loginButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("login");
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUserName.value
+  );
+  console.log(currentAccount);
+  //check if the current account exists,if yes then user should be able to login
+  // console.log(inputLoginPin.value);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log(inputLoginPin.value);
+    console.log(`${currentAccount.owner} is logged in 👩‍💻`);
+  }
+  //Display UI and Welcome message
+  welcomeScreen.textContent = `Welcome back, ${
+    currentAccount.owner.split(" ")[0]
+  }`;
+  //Change the opacity to 100
+  mainApp.style.opacity = "100";
+  inputLoginUserName.value = "";
+    inputLoginPin.value = "";
+  //Display movements
+  //Display Balance
+  //Display Summary
+});
