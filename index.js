@@ -39,8 +39,10 @@ const inputLoginPin = document.querySelector(".login__input--pin");
 const welcomeScreen = document.querySelector(".welcome");
 const mainApp = document.querySelector(".app");
 //Display movements on the page
+//Sort by default is false
+const displayMovements = function (movements, sort = false) {
+  
 
-const displayMovements = function (movements) {
   movements.forEach(function (mov, i) {
     console.log(mov, i);
     const type = mov > 0 ? "deposit" : "withdrawal";
@@ -197,3 +199,22 @@ loginButton.addEventListener("click", function (event) {
     calcDisplaySummary(currentAccount);
 });
 //We need to dynamically get the interest rate from the user account
+//Sorting an array
+const owners = ['Asha', 'Yuvaan', 'Vivaan', 'Pratul'];
+console.log(owners.sort);
+console.log(owners);//It mutates the original array
+
+console.log(movements);
+console.log(movements.sort());
+//if we return < 0 , A , B >> ASCENDING ORDER
+
+movements.sort((a, b) => a - b);
+
+//Creating and filling arrays
+console.log([1, 2, 3, 4, 5, 6, 7]);
+arr.fill(23, 2, 6);
+console.log(arr); 
+
+const Y = Array.from({ length: 7 }, () => 1)
+console.log(Y);
+const z = Array.from({length: 7},(cur,i) => i + 1)
