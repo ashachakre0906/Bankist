@@ -133,21 +133,21 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   console.log(incomes);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   console.log(out);
   labelSumOut.textContent = `${Math.abs(out)}€`; //An Absolute Value basically just makes sure a number is positive.
-  const interest = movements
+  const interest = acc.movements
     .filter((mov) => mov > 0)
-    .map((deposit) => (deposit * 1.2) / 100)
+    .map((deposit) => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       console.log(arr);
       return int >= 1; //filtered out the interst greater than 1
@@ -156,8 +156,6 @@ const calcDisplaySummary = function (movements) {
   labelSumInterest.textContent = `${interest}€`;
   console.log(interest);
 };
-calcDisplaySummary(account1.movements);
-
 //Find Method >>it wont return a new array , it basically returns the first element in an array based on the specified condition"
 //finding only one owner account
 const firstWithdrawal = movements.find((mov) => mov < 0);
@@ -196,5 +194,6 @@ loginButton.addEventListener("click", function (event) {
   //Display Balance
     callDisplayBalance(currentAccount.movements);
   //Display Summary
-    calcDisplaySummary(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
 });
+//We need to dynamically get the interest rate from the user account
