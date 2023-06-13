@@ -132,7 +132,7 @@ const euroToUsd = 1.1;
 const totalDepositsUSD = movements
   .filter((mov) => mov > 0)
   .map((mov) => mov * euroToUsd)
-  .reduce((acc, mov) => acc + mov, 0);
+  .reduce((acc, mov) => acc + mov   , 0);
 console.log(totalDepositsUSD);
 
 const calcDisplaySummary = function (acc) {
@@ -203,7 +203,6 @@ loginButton.addEventListener("click", function (event) {
 const owners = ['Asha', 'Yuvaan', 'Vivaan', 'Pratul'];
 console.log(owners.sort);
 console.log(owners);//It mutates the original array
-
 console.log(movements);
 console.log(movements.sort());
 //if we return < 0 , A , B >> ASCENDING ORDER
@@ -211,10 +210,13 @@ console.log(movements.sort());
 movements.sort((a, b) => a - b);
 
 //Creating and filling arrays
-console.log([1, 2, 3, 4, 5, 6, 7]);
-arr.fill(23, 2, 6);
-console.log(arr); 
+// console.log([1, 2, 3, 4, 5, 6, 7]);
+// arr.fill(23, 2, 6);
+// console.log(arr); 
 
 const Y = Array.from({ length: 7 }, () => 1)
 console.log(Y);
-const z = Array.from({length: 7},(cur,i) => i + 1)
+const z = Array.from({ length: 7 }, (cur, i) => i + 1)
+
+const movementsUi = Array.from(document.querySelectorAll(".movements__value"));
+console.log(movementsUi);   
